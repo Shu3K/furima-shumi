@@ -22,7 +22,7 @@
 | Column        | Type       | Options                        |
 | --------------| ---------- | ------------------------------ |
 | name          | string     | null: false                    |
-| price         | string     | null: false                    |
+| price         | integer     | null: false                    |
 | explain       | text       | null: false                    |
 | category_id   | integer    | null: false                    |
 | condition_id  | integer    | null: false                    |
@@ -33,7 +33,7 @@
 
 ### Association
   belongs_to : user
-  has_many : orders
+  has_one : orders
 
 ## orders テーブル
 
@@ -44,18 +44,19 @@
 
 ### Association
   belongs_to : user
-  belongs_to : items
+  belongs_to : item
 
-## address テーブル
+## addresses テーブル
 
 | Column        | Type       | Options                        |
 | --------------| ---------- | ------------------------------ |
 | post_code     | string     | null: false                    |
 | prefecture_id | integer    | null: false                    |
 | city          | string     | null: false                    |
-| address       | text       | null: false                    |
+| address       | string     | null: false                    |
 | building      | string     | null: true                     |
 | phone         | string     | null: false                    |
+| order         | references | null: false, foreign_key: true |
 
 ### Association
-  belongs_to : orders
+  belongs_to : order
