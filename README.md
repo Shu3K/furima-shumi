@@ -22,7 +22,7 @@
 | Column        | Type       | Options                        |
 | --------------| ---------- | ------------------------------ |
 | name          | string     | null: false                    |
-| price         | integer     | null: false                    |
+| price         | integer    | null: false                    |
 | explain       | text       | null: false                    |
 | category_id   | integer    | null: false                    |
 | condition_id  | integer    | null: false                    |
@@ -33,7 +33,7 @@
 
 ### Association
   belongs_to : user
-  has_one : orders
+  has_one : order
 
 ## orders テーブル
 
@@ -45,6 +45,7 @@
 ### Association
   belongs_to : user
   belongs_to : item
+  has_one : address
 
 ## addresses テーブル
 
