@@ -6,11 +6,11 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ユーザー新規登録' do
-   context '新規登録できるとき' do
-    it '全ての値が存在すれば登録できる' do
-      expect(@user).to be_valid
+    context '新規登録できるとき' do
+      it '全ての値が存在すれば登録できる' do
+        expect(@user).to be_valid
+      end
     end
-   end
     context '新規登録できないとき' do
       it 'nicknameが空では登録できない' do
         @user.nickname = ''
@@ -63,7 +63,7 @@ RSpec.describe User, type: :model do
         @user.email = 'testmail'
         @user.valid?
         expect(@user.errors.full_messages).to include('Email is invalid')
-      end 
+      end
       it '重複したemailが存在する場合は登録できない' do
         @user.save
         another_user = FactoryBot.build(:user)
@@ -98,22 +98,22 @@ RSpec.describe User, type: :model do
       it 'last_name_kanaが全角カタカナ以外では登録できない' do
         @user.last_name_kana = 'ぁ-ん一-龥々ー'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name kana is invalid")
+        expect(@user.errors.full_messages).to include('Last name kana is invalid')
       end
       it 'first_name_kanaがカタカナ以外では登録できない' do
         @user.first_name_kana = 'ぁ-ん一-龥々ー'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana is invalid")
+        expect(@user.errors.full_messages).to include('First name kana is invalid')
       end
       it 'last_nameがで半角では登録できない' do
         @user.last_name = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name is invalid")
+        expect(@user.errors.full_messages).to include('Last name is invalid')
       end
       it 'first_nameが半角では登録できない' do
         @user.first_name = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name is invalid")
+        expect(@user.errors.full_messages).to include('First name is invalid')
       end
     end
   end
