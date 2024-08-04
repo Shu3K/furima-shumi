@@ -54,7 +54,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
       it 'dayが空では登録できない' do
-        @item.day_id= ''
+        @item.day_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Day can't be blank")
       end
