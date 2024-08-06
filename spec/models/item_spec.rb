@@ -19,17 +19,17 @@ RSpec.describe Item, type: :model do
       end
 
       it 'nameが空では登録できない' do
-        @item.name = 1
+        @item.name = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Name can't be blank")
       end
       it 'priceが空では登録できない' do
-        @item.price = 1
+        @item.price = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it 'explainが空では登録できない' do
-        @item.explain = 1
+        @item.explain = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Explain can't be blank")
       end
@@ -76,7 +76,7 @@ RSpec.describe Item, type: :model do
       it 'ユーザーが紐づいてなければ登録できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include('must exist')
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end
