@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: :new
+  before_action :authenticate_user!, only: [:new, :edit]
   def index
     @items = Item.all.order(created_at: :desc)
   end
@@ -23,14 +23,24 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    if current_user.id != @item.user_id 
+      redirect_to root_path
+    end
   end
-  
-  private
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to item_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+end
+private
 
   def item_params
     params.require(:item).permit(:category_id, :condition_id, :prefecture_id, :payment_id, :day_id, :image, :name, :explain,
                                  :price).merge(user_id: current_user.id)
   end
 
-
-end
