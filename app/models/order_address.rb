@@ -5,10 +5,10 @@ class OrderAddress
   # ここにバリデーションの処理を書く
   with_options presence: true do
     validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-    validates :city #, message: "can't be blank"
-    validates :address #, message: "can't be blank"
-    validates :phone #, message: "can't be blank"
-    validates :user_id #, message: "can't be blank"
+    validates :city 
+    validates :address 
+    validates :phone 
+    validates :item_id 
   end
    validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
    validates_length_of :phone, in: 10..11
