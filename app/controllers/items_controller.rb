@@ -19,10 +19,11 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
   def edit
-    return unless current_user.id != @item.user_id
+    return unless current_user.id != @item.user_id || @item.order.present?
 
     redirect_to root_path
   end
