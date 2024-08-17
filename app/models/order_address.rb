@@ -1,6 +1,6 @@
 class OrderAddress
   include ActiveModel::Model
-  attr_accessor :post_code, :prefecture_id, :city, :address, :building, :phone, :order, :item_id, :user_id, :token
+  attr_accessor :post_code, :prefecture_id, :city, :address, :building, :phone, :item_id, :user_id, :token
 
   # ここにバリデーションの処理を書く
   with_options presence: true do
@@ -9,6 +9,7 @@ class OrderAddress
     validates :address
     validates :phone
     validates :item_id
+    validates :user_id
     validates :token
   end
   validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
